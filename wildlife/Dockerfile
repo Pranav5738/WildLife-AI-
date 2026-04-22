@@ -3,7 +3,20 @@ FROM eclipse-temurin:17-jdk-alpine AS builder
 
 WORKDIR /build
 
-COPY target/*.jar app.jar
+# Copy all sources from build context. Supports both:
+# 1) context = wildlife/
+# 2) context = repo root containing wildlife/
+COPY . .
+
+# Build JAR inside Docker so Render doesn't depend on a prebuilt target/ artifact.
+RUN set -eux; \
+    if [ -f pom.xml ]; then APP_DIR="."; \
+    elif [ -f wildlife/pom.xml ]; then APP_DIR="wildlife"; \
+    else echo "pom.xml not found in build context"; exit 1; fi; \
+    cd "$APP_DIR"; \
+    chmod +x mvnw; \
+    ./mvnw -DskipTests clean package; \
+    cp target/*.jar /build/app.jar
 
 # Runtime stage
 FROM eclipse-temurin:17-jre-alpine
