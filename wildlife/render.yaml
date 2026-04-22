@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: wildlife-api
+    runtime: docker
+    plan: standard
+    
+    # Build configuration
+    dockerfilePath: ./Dockerfile
+    dockerContext: ./
+    
+    # Port configuration
+    ports:
+      - port: 8080
+        protocol: HTTP
+    
+    # Environment variables
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: validate
+      - key: SPRING_JPA_SHOW_SQL
+        value: "false"
+    
+    # Health check
+    healthCheckPath: /api/health
+    
+    # Auto-deploy on push
+    autoDeploy: true
+    
+    # Branches to deploy
+    branch: main
