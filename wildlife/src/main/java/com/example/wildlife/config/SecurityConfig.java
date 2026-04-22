@@ -16,14 +16,16 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Update these with your actual deployed URLs
+        // Allowed frontend origins for local development and deployment.
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:5173",      // Local Vite dev server
             "http://localhost:3000",       // Alternative local dev
             "http://localhost:8080",       // Alternative local dev
             "http://localhost",
             "http://localhost:8082",
-            "https://wildlife-detection-system-eight.vercel.app"
+            "https://wildlife-detection-system-eight.vercel.app",
+            "https://wild-life-ai.vercel.app",
+            "https://wildlife-ai.onrender.com"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));

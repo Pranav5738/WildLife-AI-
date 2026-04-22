@@ -20,7 +20,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                 .setAllowedOriginPatterns(
                     "http://localhost:*",      // Allow all localhost ports
                     "http://127.0.0.1:*",
-                    "https://wildlife-detection-system-eight.vercel.app"    
+                    "https://wildlife-detection-system-eight.vercel.app",
+                    "https://wild-life-ai.vercel.app",
+                    "https://wildlife-ai.onrender.com"
                 )
                 .withSockJS(); // important
     }
