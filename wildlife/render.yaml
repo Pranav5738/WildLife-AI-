@@ -21,6 +21,24 @@ services:
         value: validate
       - key: SPRING_JPA_SHOW_SQL
         value: "false"
+      - key: PORT
+        value: "8080"
+    
+    # Database and secrets (reference from environment)
+    # These should be set in Render dashboard, not hardcoded here
+    # Required environment variables (set in Render dashboard):
+    # - DATABASE_URL or POSTGRES_URL (from PostgreSQL database)
+    # - POSTGRES_USER
+    # - POSTGRES_PASSWORD
+    # - JWT_SECRET
+    # - TWILIO_ACCOUNT_SID
+    # - TWILIO_AUTH_TOKEN
+    # - TWILIO_PHONE_NUMBER
+    # - USER_PHONE_NUMBER
+    # - AWS_ACCESS_KEY_ID
+    # - AWS_SECRET_ACCESS_KEY
+    # - AWS_REGION
+    # - AWS_BUCKET_NAME (or AWS_S3_BUCKET_NAME)
     
     # Health check
     healthCheckPath: /api/health
